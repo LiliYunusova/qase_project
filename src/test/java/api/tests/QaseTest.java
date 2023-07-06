@@ -1,4 +1,4 @@
-package tests;
+package api.tests;
 
 import adapters.CaseAdapter;
 import adapters.ProjectAdapter;
