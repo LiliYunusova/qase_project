@@ -1,14 +1,16 @@
-package org.tms.driver;
+package ui.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverFactory {
-    private final static int WAIT_TIMEOUT_SECOND = 3;
+    private final static int WAIT_TIMEOUT_SECOND = 15;
 
     private WebDriverFactory() {
     }

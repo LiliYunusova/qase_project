@@ -3,7 +3,7 @@ package adapters;
 import io.restassured.response.Response;
 import models.Suite;
 
-public class SuiteAdapter extends BaseAdapter {
+public class SuiteAdapter extends adapters.BaseAdapter {
 
     private static final String SUITE_API_ENDPOINT = "/suite/%s";
     private static final String SUITE_API_ENDPOINT_ID = "/suite/%s/%s";

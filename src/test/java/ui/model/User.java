@@ -1,4 +1,4 @@
-package org.tms.model;
+package ui.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

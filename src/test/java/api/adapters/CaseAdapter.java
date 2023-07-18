@@ -3,7 +3,7 @@ package adapters;
 import io.restassured.response.Response;
 import models.Cases;
 
-public class CaseAdapter extends BaseAdapter{
+public class CaseAdapter extends adapters.BaseAdapter {
 
     private static final String CASE_API_ENDPOINT = "/case/%s";
 

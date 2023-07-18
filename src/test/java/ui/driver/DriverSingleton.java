@@ -1,4 +1,4 @@
-package org.tms.driver;
+package ui.driver;
 
 import org.openqa.selenium.WebDriver;
 

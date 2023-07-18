@@ -1,10 +1,13 @@
-package org.tms.tests;
+package ui.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.tms.driver.DriverSingleton;
+import org.testng.annotations.Listeners;
+import ui.driver.DriverSingleton;
+import ui.utils.TestListener;
 
+@Listeners(TestListener.class)
 public class BaseTest {
 
     protected WebDriver driver;

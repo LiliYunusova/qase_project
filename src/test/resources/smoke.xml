@@ -4,7 +4,22 @@
 <suite name="Smoke" parallel="tests" thread-count="3">
     <test name="Login Page Test">
         <classes>
-            <class name="org.tms.tests.LoginPageTest"/>
+            <class name="ui.tests.LoginPageTest"/>
+        </classes>
+    </test>
+    <test name="Project Page Test">
+        <classes>
+            <class name="ui.tests.ProjectPageTest"/>
+        </classes>
+    </test>
+    <test name="Create New Account Test">
+        <classes>
+            <class name="ui.tests.CreateNewAccountTest"/>
+        </classes>
+    </test>
+    <test name="User Profile Test">
+        <classes>
+            <class name="ui.tests.UserProfilePageTest"/>
         </classes>
     </test>
 </suite>
