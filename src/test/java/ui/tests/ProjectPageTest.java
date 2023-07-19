@@ -1,5 +1,6 @@
 package ui.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,7 +15,6 @@ import ui.utils.TestDataGeneration;
 
 
 public class ProjectPageTest {
-
     public String generateNewNameOfProject = TestDataGeneration.getName();
     public String nameProject = "AQA20";
 
@@ -23,8 +23,6 @@ public class ProjectPageTest {
     private OneSingleProjectPageService oneSingleProjectPageService;
     User user = new User(System.getProperty("email"), System.getProperty("password"));
 
-
-
     @BeforeClass
     public void setUp() {
         loginPageService = new LoginPageService();
@@ -32,7 +30,8 @@ public class ProjectPageTest {
         oneSingleProjectPageService = new OneSingleProjectPageService();
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, priority = 1)
+    @Description("Create new Project")
     public void createNewProjectTest() {
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         OneSingleProjectPage oneSingleProjectPage = projectsPageService.createNewProjectPage(generateNewNameOfProject);
@@ -41,15 +40,17 @@ public class ProjectPageTest {
         Assert.assertTrue( newProjectPageName,"Project does not create");
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, priority = 2)
+    @Description("Search Project")
     public void searchProjectPageTest(){
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
-        boolean projectPageService = projectsPageService.searchProjectPage(nameProject);
+        boolean projectPageService = projectsPageService.searchProjectPage(generateNewNameOfProject);
         Assert.assertTrue(projectPageService, "Project does not found");
 
     }
 
-    @Test(dependsOnMethods = "createNewProjectTest", retryAnalyzer = Retry.class)
+    @Test(dependsOnMethods = "createNewProjectTest", retryAnalyzer = Retry.class, priority = 3)
+    @Description("Delete Project")
     public void deleteProjectPageTest() {
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         OneSingleProjectPageService oneSingleProjectPage = projectsPageService.getNameAndGoToPage(generateNewNameOfProject);
@@ -59,7 +60,8 @@ public class ProjectPageTest {
         Assert.assertFalse(existDeletePage, "Project found");
     }
 
-    @Test
+    @Test(priority = 4)
+    @Description("Add Filter Milestone")
     public void addFilterToSearchProjectPageTest(){
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         String actualTextOfAddFilterProjectPage = projectsPageService.addFilterToProjectPage();

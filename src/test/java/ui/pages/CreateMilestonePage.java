@@ -1,9 +1,10 @@
 package ui.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateMilestonePage extends BasePage{
+public class CreateMilestonePage extends BasePage {
 
     @FindBy(xpath = "//input[@id='title']")
     private WebElement nameMilestone;
@@ -12,17 +13,19 @@ public class CreateMilestonePage extends BasePage{
     @FindBy(xpath = "//button[@type = 'submit']")
     private WebElement createMilestoneButton;
 
-    public CreateMilestonePage sendNameMilestone(String nameOfMilestone){
+    @Step("Fill Name Milestone")
+    public CreateMilestonePage sendNameMilestone(String nameOfMilestone) {
         waitVisibilityOf(nameMilestone).sendKeys(nameOfMilestone);
         return this;
     }
 
-    public CreateMilestonePage sendDescriptionMilestoneField(String descriptionMilestone){
+    @Step("Fill Description Field")
+    public CreateMilestonePage sendDescriptionMilestoneField(String descriptionMilestone) {
         waitVisibilityOf(descriptionMilestoneField).sendKeys(descriptionMilestone);
         return this;
     }
-
-    public void clickCreateMilestoneButton(){
+    @Step("Click to button Create Milestone")
+    public void clickCreateMilestoneButton() {
         waitElementToBeClickable(createMilestoneButton).click();
     }
 }

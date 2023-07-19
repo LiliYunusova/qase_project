@@ -27,7 +27,7 @@ public class ProjectsPageService {
     public OneSingleProjectPageService getNameAndGoToPage(String generateNewNameOfProject) {
         ProjectsPage projectsPage = new ProjectsPage();
         projectsPage
-                //clickCleanSearchFieldButton()
+                .clickCleanSearchFieldButton()
                 .getNameAndGoToProjectPage(generateNewNameOfProject);
         return new OneSingleProjectPageService();
     }

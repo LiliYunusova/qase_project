@@ -1,5 +1,6 @@
 package ui.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,15 +24,14 @@ public class ProjectsPage extends BasePage {
     private WebElement createProjectInFormButton;
 
 
-
     @FindBy(xpath = "//table[@class = 'table projects-table mt-3']//tbody/tr//a[@class = 'defect-title']")
     private List<WebElement> nameOfAllProjects;
 
     @FindBy(xpath = "//input[@name = 'title']")
     private WebElement searchProjectPageField;
 
-//    @FindBy(xpath = "//button[contains(@class, 'input-clear-btn')]")
-//    private WebElement cleanSearchFieldButton;
+    @FindBy(xpath = "//button[contains(@class, 'input-clear-btn') and contains(@class, 'btn')]")
+    private WebElement cleanSearchFieldButton;
 
     @FindBy(xpath = "//button[@class = 'add-filter-button']")
     private WebElement addFilterButton;
@@ -48,29 +48,34 @@ public class ProjectsPage extends BasePage {
     @FindBy(xpath = "//div[@id = 'layout']//a[contains(@href, '/workspace') and contains(text(), 'Workspace')]")
     private WebElement workspaceLink;
 
-
+    @Step("Text of Header Project Page")
     public String getTextOfNameOfHeaderOfProjectPage() {
         return waitVisibilityOf(nameOfHeaderOfProjectPage).getText();
     }
 
+    @Step("Click to Button Create new Project ")
     public ProjectsPage clickCreateNewProjectButton() {
         waitElementToBeClickable(createNewProjectButton).click();
         return this;
     }
 
+    @Step("Filling name Project")
     public ProjectsPage fillInNameOfNewProject(String generateNewNameOfProject) {
         waitVisibilityOf(nameOfNewProject).sendKeys(generateNewNameOfProject);
         return this;
     }
 
+    @Step("Click checkbox Public")
     public ProjectsPage clickNamePublicCheckBoxButton() {
         waitElementToBeClickable(namePublicCheckBoxButton).click();
         return this;
     }
 
+    @Step("Click button In form Create Button")
     public void clickCreateProjectInFormButton() {
         waitElementToBeClickable(createProjectInFormButton).click();
     }
+
 
     public boolean existNameOfProject(String name) {
         for (WebElement element : nameOfAllProjects) {
@@ -87,10 +92,10 @@ public class ProjectsPage extends BasePage {
         return this;
     }
 
-//    public ProjectsPage clickCleanSearchFieldButton() {
-//        waitElementToBeClickable(cleanSearchFieldButton).click();
-//        return this;
-//    }
+    public ProjectsPage clickCleanSearchFieldButton() {
+        waitElementToBeClickable(cleanSearchFieldButton).click();
+        return this;
+    }
 
     public ProjectsPage getNameAndGoToProjectPage(String name) {
         for (WebElement element : nameOfAllProjects) {
@@ -121,7 +126,7 @@ public class ProjectsPage extends BasePage {
         return waitVisibilityOf(textOfAddFilterProjectPage).getText();
     }
 
-    public void clickWorkspaceLink(){
+    public void clickWorkspaceLink() {
         waitVisibilityOf(workspaceLink).click();
     }
 

@@ -1,5 +1,6 @@
 package ui.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -31,6 +32,7 @@ public class CreateNewSuiteTest {
     }
 
     @Test
+    @Description("Create new Suite")
     public void createNewSuite() {
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         oneSingleProjectPageService.searchProject(nameProject);

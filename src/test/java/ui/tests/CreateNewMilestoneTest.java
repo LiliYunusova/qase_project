@@ -31,16 +31,10 @@ public class CreateNewMilestoneTest {
     @Test
     public void createNewMilestone(){
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
-        OneSingleProjectPageService oneSingleProjectPageService = projectsPageService.getNameAndGoToPage("WWW");
+        OneSingleProjectPageService oneSingleProjectPageService = projectsPageService.getNameOfProjects(nameProject);
         MilestonePageService milestonePageService = oneSingleProjectPageService.moveNewMilestonePage();
         CreateMilestoneService createMilestoneService = milestonePageService.createMilestone();
         MilestonePageService milestonePageService1 = createMilestoneService.fillMilestonePage(generateNewName);
-
-//        //newCreateMilestoneService.searchProject("WWW");
-//        oneSingleProjectPageService.moveNewMilestonePage();
-//        newMilestonePageService.createMilestone();
-//        newCreateMilestoneService.fillMilestonePage(generateNewName);
-//        MilestonePageService milestonePageService = newMilestonePageService;
         boolean newMilestoneName = milestonePageService.existNewMilestone(generateNewName);
         Assert.assertTrue(newMilestoneName, "New Milestone does not create");
 
