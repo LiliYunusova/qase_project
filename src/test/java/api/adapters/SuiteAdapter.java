@@ -11,6 +11,7 @@ public class SuiteAdapter extends adapters.BaseAdapter {
     public Response getSuite(String projectCode){
         return get(String.format(SUITE_API_ENDPOINT,projectCode));
     }
+
     public Response create(String projectCode, Suite suite) {
         return post(String.format(SUITE_API_ENDPOINT, projectCode), converter.toJson(suite));
     }

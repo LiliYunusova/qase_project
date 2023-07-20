@@ -3,15 +3,17 @@ package api.tests;
 import adapters.CaseAdapter;
 import adapters.ProjectAdapter;
 import adapters.SuiteAdapter;
-import io.restassured.response.Response;
 import models.Cases;
 import models.Project;
 import models.Suite;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import ui.utils.TestDataGeneration;
+
 import static java.net.HttpURLConnection.HTTP_OK;
 
 public class QaseTest {
+    String generateName = TestDataGeneration.getName();
 
     @Test
     public void getProjectTest() {
@@ -22,8 +24,8 @@ public class QaseTest {
     @Test
     public void createProjectTest() {
         Project project = Project.builder()
-                .title("AQA24")
-                .code("aqa24")
+                .title(generateName)
+                .code(generateName)
                 .build();
         String codeOfProject = new ProjectAdapter().create(project).body().path("result.code");
         Assert.assertTrue(codeOfProject.equalsIgnoreCase(project.getCode()));
@@ -31,10 +33,10 @@ public class QaseTest {
 
     @Test
     public void createSuiteTest() {
-        String projectCode = "AQA24";
+        String projectCode = "AQA20";
         Suite suite = Suite.builder()
-                .title("smoke2")
-                .description("This is smoke2 test")
+                .title("AQA24")
+                .description("This is" + "AQA20"+  "test")
                 .build();
         int resultId = new SuiteAdapter().create(projectCode, suite).body().path("result.id");
         Assert.assertTrue(resultId != 0);
@@ -72,10 +74,10 @@ public class QaseTest {
 
     @Test
     public void updateSuiteTest(){
-        String projectCode = "AQA20";
+        String projectCode = "AQA12";
         int id = 1;
         Suite suite = Suite.builder()
-                .title("test4")
+                .title("test6")
                 .build();
         int statusCode = new SuiteAdapter().update(projectCode,id,suite).statusCode();
         Assert.assertEquals(statusCode,HTTP_OK);
@@ -83,7 +85,7 @@ public class QaseTest {
 
     @Test
     public void deleteSuiteTest(){
-        String projectCode = "AQA20";
+        String projectCode = "AQA12";
         Suite suite = Suite.builder()
                 .build();
         int id = 1;
