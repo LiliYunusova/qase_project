@@ -10,10 +10,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ui.utils.TestDataGeneration;
 
+import java.util.Locale;
+
 import static java.net.HttpURLConnection.HTTP_OK;
 
 public class QaseTest {
     String generateName = TestDataGeneration.getName();
+    String projectCode = generateName;
 
     @Test
     public void getProjectTest() {
@@ -21,7 +24,7 @@ public class QaseTest {
         Assert.assertEquals(statusCode, HTTP_OK);
     }
 
-    @Test
+    @Test(priority = 1)
     public void createProjectTest() {
         Project project = Project.builder()
                 .title(generateName)
@@ -31,65 +34,59 @@ public class QaseTest {
         Assert.assertTrue(codeOfProject.equalsIgnoreCase(project.getCode()));
     }
 
-    @Test
+    @Test(priority = 2)
     public void createSuiteTest() {
-        String projectCode = "AQA20";
         Suite suite = Suite.builder()
-                .title("AQA24")
-                .description("This is" + "AQA20"+  "test")
+                .title(generateName)
+                .description("This is" + generateName +  "test")
                 .build();
-        int resultId = new SuiteAdapter().create(projectCode, suite).body().path("result.id");
+        int resultId = new SuiteAdapter().create(projectCode.toUpperCase(Locale.ROOT), suite).body().path("result.id");
         Assert.assertTrue(resultId != 0);
     }
 
-    @Test
+    @Test(dependsOnMethods = "createProjectTest")
     public void getCasesTest(){
-        String projectCode = "AQA24";
-        int statusCode = new CaseAdapter().getCases(projectCode).statusCode();
+        int statusCode = new CaseAdapter().getCases(projectCode.toUpperCase(Locale.ROOT)).statusCode();
         Assert.assertEquals(statusCode, HTTP_OK);
     }
 
-    @Test
+    @Test(priority = 3)
     public void createCasesTest() {
-        String projectCode = "AQA24";
         Cases cases = Cases.builder()
                 .title("testCase2")
                 .description("This is number 2 case")
                 .build();
-        int resultId = new CaseAdapter().create(projectCode, cases).body().path("result.id");
+        int resultId = new CaseAdapter().create(projectCode.toUpperCase(Locale.ROOT), cases).body().path("result.id");
         Assert.assertTrue(resultId != 0);
     }
 
-    @Test
+    @Test(priority = 4)
     public void createCasesIntoSuiteTest() {
-        String projectCode = "AQA24";
         Cases cases = Cases.builder()
                 .title("testCaseIntoSuite")
-                .suiteId(2)
+                .suiteId(1)
                 .description("This is number testCaseIntoSuite case")
                 .build();
-        int resultId = new CaseAdapter().create(projectCode, cases).body().path("result.id");
+        int resultId = new CaseAdapter().create(projectCode.toUpperCase(Locale.ROOT), cases).body().path("result.id");
         Assert.assertTrue(resultId != 0);
     }
 
-    @Test
+    @Test(priority = 5)
     public void updateSuiteTest(){
-        String projectCode = "AQA12";
         int id = 1;
         Suite suite = Suite.builder()
-                .title("test6")
+                .title("test")
                 .build();
-        int statusCode = new SuiteAdapter().update(projectCode,id,suite).statusCode();
+        int statusCode = new SuiteAdapter().update(projectCode.toUpperCase(Locale.ROOT),id,suite).statusCode();
         Assert.assertEquals(statusCode,HTTP_OK);
     }
 
-    @Test
+    @Test(priority = 6)
     public void deleteSuiteTest(){
-        String projectCode = "AQA12";
         Suite suite = Suite.builder()
                 .build();
         int id = 1;
-        int statusCode = new SuiteAdapter().delete(projectCode,id, suite).statusCode();
+        int statusCode = new SuiteAdapter().delete(projectCode.toUpperCase(Locale.ROOT),id, suite).statusCode();
         Assert.assertEquals(statusCode,HTTP_OK);
     }
 }
