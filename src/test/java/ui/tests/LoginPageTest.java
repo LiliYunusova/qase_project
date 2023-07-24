@@ -20,7 +20,7 @@ public class LoginPageTest extends BaseTest {
 
     @Test(retryAnalyzer = Retry.class, description = "Login to https://app.qase.io")
     @Description("Login to https://app.qase.io")
-    public void loginTest() {
+    public void verifyLoginTest() {
         User user = new User(System.getProperty("email"), System.getProperty("password"));
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         String actualTextOfProjectPage = projectsPageService.actualTextNameOfHeaderOfProjectPage();

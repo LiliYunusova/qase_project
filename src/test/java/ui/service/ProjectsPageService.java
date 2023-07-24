@@ -6,7 +6,7 @@ import ui.pages.ProjectsPage;
 
 public class ProjectsPageService {
 
-    ProjectsPage projectsPage = new ProjectsPage();
+    private final ProjectsPage projectsPage = new ProjectsPage();
 
     public String actualTextNameOfHeaderOfProjectPage() {
         return projectsPage.getTextOfNameOfHeaderOfProjectPage();
@@ -25,7 +25,6 @@ public class ProjectsPageService {
     }
 
     public OneSingleProjectPageService getNameAndGoToPage(String generateNewNameOfProject) {
-        ProjectsPage projectsPage = new ProjectsPage();
         projectsPage
                 .clickCleanSearchFieldButton()
                 .getNameAndGoToProjectPage(generateNewNameOfProject);
@@ -33,28 +32,23 @@ public class ProjectsPageService {
     }
 
     public OneSingleProjectPageService getNameOfProjects(String generateNewNameOfProject) {
-        ProjectsPage projectsPage = new ProjectsPage();
         projectsPage
                 .getNameAndGoToProjectPage(generateNewNameOfProject);
         return new OneSingleProjectPageService();
     }
 
     public boolean searchProjectPage(String projectName){
-        ProjectsPage projectsPage = new ProjectsPage();
         return  projectsPage.searchProjectPageField(projectName).existNameOfProject(projectName);
     }
 
     public String addFilterToProjectPage(){
-        ProjectsPage projectsPage = new ProjectsPage();
         return projectsPage.clickAddFilterButton()
                 .clickFilterMenu().clickFilterDropDownMilestone()
                 .getTextOfFilterProjectPage();
     }
 
     public WorkspacePageService getWorkspacePage(){
-        ProjectsPage projectsPage = new ProjectsPage();
         projectsPage.clickWorkspaceLink();
         return new WorkspacePageService();
     }
-
 }

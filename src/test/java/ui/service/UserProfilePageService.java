@@ -13,7 +13,4 @@ public class UserProfilePageService {
                 .clickWorkspaceLink();
         return new WorkspacePageService();
     }
-
-
-
 }

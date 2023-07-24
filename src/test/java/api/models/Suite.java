@@ -13,5 +13,4 @@ public class Suite {
     private String precondition;
     @SerializedName("parent_id")
     private String parentId;
-
 }

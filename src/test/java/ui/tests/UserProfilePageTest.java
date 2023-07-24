@@ -1,5 +1,6 @@
 package ui.tests;
 
+import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -8,20 +9,14 @@ import ui.service.LoginPageService;
 import ui.service.ProjectsPageService;
 import ui.service.UserProfilePageService;
 import ui.service.WorkspacePageService;
+import ui.utils.Retry;
 import ui.utils.TestDataGeneration;
 
 public class UserProfilePageTest {
-
-    public String generateNewFirstName = TestDataGeneration.getName();
-    public String generateNewLastName = TestDataGeneration.getName();
-    public String generateRole = TestDataGeneration.getName();
-
     private ProjectsPageService projectsPageService;
     private LoginPageService loginPageService;
     private WorkspacePageService workspacePageService;
     private UserProfilePageService userProfilePageService;
-
-    User user = new User(System.getProperty("email"), System.getProperty("password"));
 
     @BeforeClass
     public void setUp() {
@@ -31,8 +26,13 @@ public class UserProfilePageTest {
         userProfilePageService = new UserProfilePageService();
     }
 
-    @Test
-    public void updateUserProfile() {
+    @Test(retryAnalyzer = Retry.class)
+    @Description("Update user Profile")
+    public void verifyUpdateUserProfileTest() {
+        String generateNewFirstName = TestDataGeneration.getName();
+        String generateNewLastName = TestDataGeneration.getName();
+        String generateRole = TestDataGeneration.getName();
+        User user = new User(System.getProperty("email"), System.getProperty("password"));
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         WorkspacePageService workspacePageService = projectsPageService.getWorkspacePage();
         UserProfilePageService userProfilePageService = workspacePageService.editUserProfile();

@@ -1,5 +1,6 @@
 package ui.tests;
 
+import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -8,12 +9,13 @@ import ui.service.LoginPageService;
 import ui.service.OneSingleProjectPageService;
 import ui.service.ProjectsPageService;
 import ui.service.TestCaseService;
+import ui.utils.Retry;
 import ui.utils.TestDataGeneration;
 
 public class TestCaseCreateTest {
 
     public String generateNewNameOfProject = TestDataGeneration.getName();
-    public String nameProject = "AQA20";
+  //  public String nameProject = "AQA20";
 
     private ProjectsPageService projectsPageService;
     private LoginPageService loginPageService;
@@ -29,8 +31,9 @@ public class TestCaseCreateTest {
         testCaseService = new TestCaseService();
     }
 
-    @Test
-    public void createTestCase(){
+    @Test(retryAnalyzer = Retry.class, priority = 1)
+    @Description("Create Test Case")
+    public void verifyCreateTestCaseTest(){
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         OneSingleProjectPageService oneSingleProjectPageService = projectsPageService.getNameOfProjects("WWW");
         TestCaseService testCaseService = oneSingleProjectPageService.moveToCreateTestCase();

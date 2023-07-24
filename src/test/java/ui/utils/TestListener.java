@@ -47,5 +47,4 @@ public class TestListener implements ITestListener {
     private byte[] takeScreenshot(){
         return ((TakesScreenshot) DriverSingleton.getInstance().getDriver()).getScreenshotAs(OutputType.BYTES);
     }
-
 }

@@ -4,14 +4,10 @@ import ui.pages.SettingOneSingleProjectPage;
 
 public class SettingsProjectService {
 
-    SettingOneSingleProjectPage settingOneSingleProjectPage = new SettingOneSingleProjectPage();
-    private String name;
-
     public ProjectsPageService deleteProjectPage(String name) {
+        SettingOneSingleProjectPage settingOneSingleProjectPage = new SettingOneSingleProjectPage();
         settingOneSingleProjectPage.clickDeleteProjectButton()
                 .clickConfirmDeleteButton();
         return new ProjectsPageService();
     }
-
-
 }

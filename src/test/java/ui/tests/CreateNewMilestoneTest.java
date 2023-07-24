@@ -1,23 +1,22 @@
 package ui.tests;
 
+import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ui.model.User;
 import ui.service.*;
+import ui.utils.Retry;
 import ui.utils.TestDataGeneration;
 
 public class CreateNewMilestoneTest {
 
-    public String generateNewName = TestDataGeneration.getName();
-
-    public String nameProject = "AQA20";
     private ProjectsPageService projectsPageService;
     private LoginPageService loginPageService;
     private OneSingleProjectPageService oneSingleProjectPageService;
     private CreateMilestoneService newCreateMilestoneService;
     private MilestonePageService newMilestonePageService;
-    User user = new User(System.getProperty("email"), System.getProperty("password"));
+
 
     @BeforeClass
     public void setUp() {
@@ -28,8 +27,12 @@ public class CreateNewMilestoneTest {
         newMilestonePageService = new MilestonePageService();
     }
 
-    @Test
-    public void createNewMilestone(){
+    @Test(retryAnalyzer = Retry.class)
+    @Description("Create new Milestone")
+    public void verifyCreateNewMilestoneTest(){
+        String generateNewName = TestDataGeneration.getName();
+        String nameProject = "AQA20";
+        User user = new User(System.getProperty("email"), System.getProperty("password"));
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         OneSingleProjectPageService oneSingleProjectPageService = projectsPageService.getNameOfProjects(nameProject);
         MilestonePageService milestonePageService = oneSingleProjectPageService.moveNewMilestonePage();

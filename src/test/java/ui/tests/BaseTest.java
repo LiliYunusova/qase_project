@@ -21,5 +21,4 @@ public class BaseTest {
     public void stopBrowser(){
         DriverSingleton.getInstance().closeDriver();
     }
-
 }

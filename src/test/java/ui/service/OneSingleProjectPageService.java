@@ -5,29 +5,24 @@ import ui.pages.ProjectsPage;
 
 public class OneSingleProjectPageService {
 
-    OneSingleProjectPage oneSingleProjectPage = new OneSingleProjectPage();
+    private final OneSingleProjectPage oneSingleProjectPage = new OneSingleProjectPage();
 
     public ProjectsPageService goToProjectPage(){
         oneSingleProjectPage.clickTitleProject();
         return new ProjectsPageService();
     }
 
-
-
     public SettingsProjectService moveSettingsProjectPage(){
-        OneSingleProjectPage oneSingleProjectPage = new OneSingleProjectPage();
         oneSingleProjectPage.clickSettingProjectLink();
         return new SettingsProjectService();
     }
 
     public MilestonePageService moveNewMilestonePage(){
-        OneSingleProjectPage oneSingleProjectPage = new OneSingleProjectPage();
         oneSingleProjectPage.clickMilestoneLink();
         return new MilestonePageService();
     }
 
     public boolean createNewSuite(String nameSuite) {
-        OneSingleProjectPage oneSingleProjectPage = new OneSingleProjectPage();
         oneSingleProjectPage.clickCreateNewSuiteButton()
                 .clickTitleSuiteNameField(nameSuite)
                 .clickSubmitCreateSuiteButton();
@@ -46,19 +41,11 @@ public class OneSingleProjectPageService {
     }
 
     public TestCaseService moveToCreateTestCase(){
-        OneSingleProjectPage oneSingleProjectPage = new OneSingleProjectPage();
         oneSingleProjectPage.clickCreateTestCase();
         return new TestCaseService();
     }
 
     public boolean createTestCase(String name){
-        OneSingleProjectPage oneSingleProjectPage = new OneSingleProjectPage();
         return oneSingleProjectPage.existNewCase( name);
     }
-
-
-
-
-
-
 }

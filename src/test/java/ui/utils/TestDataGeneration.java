@@ -16,6 +16,4 @@ public class TestDataGeneration {
     public static String getEmail(){
         return faker.internet().emailAddress();
     }
-
-
 }

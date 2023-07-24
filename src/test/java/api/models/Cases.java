@@ -13,5 +13,4 @@ public class Cases {
     private String precondition;
     @SerializedName("suite_id")
     private int suiteId;
-
 }

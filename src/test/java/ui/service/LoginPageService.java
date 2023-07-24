@@ -6,7 +6,7 @@ import ui.pages.LoginPage;
 import static ui.constants.PageUrl.LOGIN_PAGE;
 
 public class LoginPageService {
-    LoginPage loginPage = new LoginPage();
+   private final LoginPage loginPage = new LoginPage();
 
     public ProjectsPageService loginQasePage(User user) {
         loginPage.openLoginPage(LOGIN_PAGE)

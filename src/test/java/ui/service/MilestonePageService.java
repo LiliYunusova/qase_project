@@ -4,7 +4,9 @@ import ui.pages.BasePage;
 import ui.pages.MilestonePage;
 
 public class MilestonePageService extends BasePage {
-    MilestonePage milestonePage = new MilestonePage();
+
+    private final MilestonePage milestonePage = new MilestonePage();
+
     public CreateMilestoneService createMilestone(){
         milestonePage.clickCreateMilestoneButton();
         return new CreateMilestoneService();

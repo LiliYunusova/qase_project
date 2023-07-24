@@ -23,9 +23,9 @@ public class CreateNewAccountTest extends BaseTest {
         signUpPageService = new SignUpPageService();
     }
 
-    @Test(retryAnalyzer = Retry.class, description = "Create new account test")
+    @Test(retryAnalyzer = Retry.class)
     @Description("Create new account test")
-    public void createAccountTest() {
+    public void verifyCreateAccountTest() {
         String email = TestDataGeneration.getEmail();
         String password = TestDataGeneration.getPassword();
         String confirmPassword = password;

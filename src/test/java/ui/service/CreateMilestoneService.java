@@ -18,7 +18,4 @@ public class CreateMilestoneService {
         projectsPage.getNameAndGoToProjectPage(generateNewNameOfProject);
         return new OneSingleProjectPageService();
     }
-
-
-
 }

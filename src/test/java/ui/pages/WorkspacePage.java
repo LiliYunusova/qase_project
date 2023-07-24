@@ -1,9 +1,12 @@
 package ui.pages;
 
+import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class WorkspacePage extends BasePage{
+@Log4j2
+public class WorkspacePage extends BasePage {
 
     @FindBy(xpath = "//div[@class = 'dropdown']//a[@data-bs-toggle = 'dropdown']")
     private WebElement dropdownEditButton;
@@ -14,17 +17,21 @@ public class WorkspacePage extends BasePage{
     @FindBy(xpath = "//span[contains(@class, 'team-member-name')]")
     private WebElement FirstNameAndLastNameUser;
 
-    public WorkspacePage clickDropdownEditButton(){
+    @Step("Click Edit DropDown Button")
+    public WorkspacePage clickDropdownEditButton() {
+        log.info("Click Edit DropDown");
         waitVisibilityOf(dropdownEditButton).click();
         return this;
     }
 
-    public void clickEditProfileButton(){
+    @Step("Click Edit Profile Button")
+    public void clickEditProfileButton() {
+        log.info("Click Edit Profile");
         waitVisibilityOf(editProfileButton).click();
     }
-
-    public String getFirstNameAndLastNameUser(){
+    @Step("Get First name and Last Name")
+    public String getFirstNameAndLastNameUser() {
+        log.info("First Name and Last name");
         return waitVisibilityOf(FirstNameAndLastNameUser).getText();
     }
-
 }

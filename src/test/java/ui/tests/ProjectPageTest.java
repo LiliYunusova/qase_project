@@ -16,7 +16,7 @@ import ui.utils.TestDataGeneration;
 
 public class ProjectPageTest {
     public String generateNewNameOfProject = TestDataGeneration.getName();
-    public String nameProject = "AQA20";
+   // public String nameProject = "AQA20";
 
     private ProjectsPageService projectsPageService;
     private LoginPageService loginPageService;
@@ -32,7 +32,7 @@ public class ProjectPageTest {
 
     @Test(retryAnalyzer = Retry.class, priority = 1)
     @Description("Create new Project")
-    public void createNewProjectTest() {
+    public void verifyCreateNewProjectTest() {
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         OneSingleProjectPage oneSingleProjectPage = projectsPageService.createNewProjectPage(generateNewNameOfProject);
         ProjectsPageService toProjectsPageService = oneSingleProjectPageService.goToProjectPage();
@@ -42,16 +42,16 @@ public class ProjectPageTest {
 
     @Test(retryAnalyzer = Retry.class, priority = 2)
     @Description("Search Project")
-    public void searchProjectPageTest(){
+    public void verifySearchProjectPageTest(){
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         boolean projectPageService = projectsPageService.searchProjectPage(generateNewNameOfProject);
         Assert.assertTrue(projectPageService, "Project does not found");
 
     }
 
-    @Test(dependsOnMethods = "createNewProjectTest", retryAnalyzer = Retry.class, priority = 3)
+    @Test(dependsOnMethods = "verifyCreateNewProjectTest", retryAnalyzer = Retry.class, priority = 3)
     @Description("Delete Project")
-    public void deleteProjectPageTest() {
+    public void verifyDeleteProjectPageTest() {
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         OneSingleProjectPageService oneSingleProjectPage = projectsPageService.getNameAndGoToPage(generateNewNameOfProject);
         SettingsProjectService settingsProjectService = oneSingleProjectPageService.moveSettingsProjectPage();
@@ -62,10 +62,9 @@ public class ProjectPageTest {
 
     @Test(priority = 4)
     @Description("Add Filter Milestone")
-    public void addFilterToSearchProjectPageTest(){
+    public void verifyAddFilterToSearchProjectPageTest(){
         ProjectsPageService projectsPageService = loginPageService.loginQasePage(user);
         String actualTextOfAddFilterProjectPage = projectsPageService.addFilterToProjectPage();
         Assert.assertEquals(actualTextOfAddFilterProjectPage, "Milestones");
     }
-
 }
