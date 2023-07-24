@@ -94,7 +94,9 @@ public class OneSingleProjectPage extends BasePage {
         waitElementToBeClickable(createTestCase).click();
     }
 
+    @Step("New case name")
     public boolean existNewCase(String nameCase) {
+        log.info("search new Case name");
         for (WebElement element : listAllCases) {
             if (element.getText().equals(nameCase)) {
                 return true;

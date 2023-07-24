@@ -24,7 +24,9 @@ public class MilestonePage extends BasePage {
         return this;
     }
 
+    @Step("Search new Milestone name")
     public boolean existNewMilestone(String milestoneName) {
+        log.info("check milestone name");
         for (WebElement element : listMilestoneName) {
             if (element.getText().equals(milestoneName)) {
                 return true;
