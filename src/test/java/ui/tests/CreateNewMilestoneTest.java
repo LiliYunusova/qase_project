@@ -40,6 +40,5 @@ public class CreateNewMilestoneTest {
         MilestonePageService milestonePageService1 = createMilestoneService.fillMilestonePage(generateNewName);
         boolean newMilestoneName = milestonePageService.existNewMilestone(generateNewName);
         Assert.assertTrue(newMilestoneName, "New Milestone does not create");
-
     }
 }
